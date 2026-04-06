@@ -72,13 +72,13 @@ function updateZoom() {
 
 function zoomIn(e) {
   if (e) e.stopPropagation();
-  currentZoom = Math.min(currentZoom + 0.5, 4);
+  currentZoom = Math.min(currentZoom + 0.2, 5);
   updateZoom();
 }
 
 function zoomOut(e) {
   if (e) e.stopPropagation();
-  currentZoom = Math.max(currentZoom - 0.5, 0.5);
+  currentZoom = Math.max(currentZoom - 0.2, 0.1);
   updateZoom();
 }
 
