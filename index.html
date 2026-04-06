@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Engineering Handoff - Fintech1000s</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="tech-deck.css">
+</head>
+
+<body>
+  <div class="progress-bar" id="progressBar"></div>
+  <div class="slide-counter" id="slideCounter">1 / 10</div>
+  <nav class="nav-arrows">
+    <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">‹</button>
+    <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">›</button>
+  </nav>
+
+  <!-- SLIDE 1: Cover -->
+  <section class="slide active" id="slide-0">
+    <div class="slide-inner" style="align-items: center; text-align: center;">
+      <h1>Technical Journey Blueprint</h1>
+      <h2 style="font-size:3rem; margin-bottom:10px;"><span class="accent-cyan">Fintech</span>1000s</h2>
+      <p style="color:var(--text-muted); font-size:1.2rem; max-width:600px; margin:0 auto;">Spesifikasi Alur Produk &
+        User Journey berdasarkan Peran <b>Role-Based Flow</b> untuk Tim Eksekusi IT.</p>
+    </div>
+  </section>
+
+  <!-- SLIDE 2: Components -->
+  <section class="slide" id="slide-1">
+    <div class="slide-inner">
+      <div class="slide-label">OVERVIEW</div>
+      <h2>Peta Ekosistem <span class="accent-cyan">Tiga Aktor</span></h2>
+      <p style="font-size: 1.15rem; color: var(--text-muted); margin-bottom: 30px;">
+        Sistem Fintech1000s membagi wewenang secara jelas kepada tiga entitas yang tidak saling bertabrakan:
+      </p>
+      <div class="grid-3">
+        <div class="glass-card">
+          <div class="card-icon" style="background:rgba(34, 211, 238, 0.1); border-color:var(--accent-cyan)">👨‍💻</div>
+          <h3 style="color:var(--accent-cyan)">1. Admin</h3>
+          <p>Pemegang kendali upload data secara masif (via CSV). Bertugas mendaftarkan daftar prioritas Merchant agar
+            mendapatkan pengajuan fasilitas instan.</p>
+        </div>
+        <div class="glass-card">
+          <div class="card-icon" style="background:rgba(168, 85, 247, 0.1); border-color:var(--accent-purple)">🏢</div>
+          <h3 style="color:var(--accent-purple)">2. Selling Agent</h3>
+          <p>Bertindak sebagai verifikator tunggal dan pemberi plafon limit jika pengajuan Merchant tidak ada di dalam
+            daftar cepat Admin.</p>
+        </div>
+        <div class="glass-card">
+          <div class="card-icon" style="background:rgba(16, 185, 129, 0.1); border-color:var(--accent-green)">🏪</div>
+          <h3 style="color:var(--accent-green)">3. Merchant</h3>
+          <p>Klien pembeli yang menikmati Limit Fintech1000s untuk menjaga agar bisnis mereka bebas dari blokir
+            transaksi di Mitra1000s.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 3: POV Admin -->
+  <section class="slide" id="slide-2">
+    <div class="slide-inner">
+      <div class="slide-label">POV ADMIN</div>
+      <h2>Manajemen <span class="accent-cyan">Data Whitelist</span></h2>
+      <div
+        style="background: var(--bg-card); border-radius: var(--radius); padding: 40px; border: 1px solid var(--border-light); display: flex; flex-direction: column; gap: 20px;">
+        <h3 style="font-size: 1.5rem; color: #fff;">Pengaturan Data Merchant</h3>
+        <p style="font-size: 1.15rem; line-height: 1.7; color: var(--text-muted);">
+          Ketika Admin sistem menerima instruksi data dari SA, Admin dapat melakukan upload data ke dalam sistem
+          Fintech1000s. File ini memuat <strong>Kode Toko Merchant</strong> dan <strong>Nominal Limit Kredit</strong>
+          untuk keperluan persetujuan otomatis.
+        </p>
+        <div
+          style="background: rgba(34, 211, 238, 0.05); border-left: 4px solid var(--accent-cyan); padding: 20px; border-radius: 4px; margin-top: 10px;">
+          <h4 style="color: var(--accent-cyan); margin-bottom: 10px; font-size: 1.2rem;">Persetejuan Otomatis
+            (Auto-Approve)</h4>
+          <p style="color: var(--text-main); font-size: 1.1rem; line-height: 1.6;">
+            Merchant yang terdaftar dalam data <strong>Whitelist</strong> akan mendapatkan otomatisasi persetujuan saat
+            mengajukan fasilitas akun kredit Fintech1000s. Sistem akan melakukan <em>bypass</em> persetujuan SA manual
+            dan
+            langsung memberikan Plafon Limit sesuai nominal yang telah ditentukan.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 4: POV Selling Agent -->
+  <section class="slide" id="slide-3">
+    <div class="slide-inner">
+      <div class="slide-label">POV SELLING AGENT</div>
+      <h2>Tugas <span class="accent-purple">Verifikasi & Penagihan</span></h2>
+      <div class="grid-2">
+        <div class="glass-card" style="border-color: rgba(168, 85, 247, 0.3);">
+          <div style="font-size: 2rem; margin-bottom: 15px;">🔍</div>
+          <h3 style="color: #fff; margin-bottom: 15px;">Verifikasi Manual</h3>
+          <p>Jika Merchant yang mengajukan Fintech1000s tidak berada pada daftar Whitelist, maka instruksi verifikasi
+            diteruskan ke Dashboard SA terkait. SA akan menentukan persetujuan dan besaran nominal limit (misal: 60
+            Juta) secara manual.</p>
+        </div>
+        <div class="glass-card" style="border-color: rgba(239, 68, 68, 0.3);">
+          <div style="font-size: 2rem; margin-bottom: 15px;">🚨</div>
+          <h3 style="color: #fff; margin-bottom: 15px;">Proses Tagihan Macet</h3>
+          <p>Apabila Merchant gagal menyelesaikan kewajiban hingga batas maksimal ekstensi tempo (lebih dari 56 Hari /
+            Hari ke-57), sistem IT akan menandainya sebagai NPL/Kredit Macet. SA akan menerima notifikasi otomatis untuk
+            mengambil alih tugas penagihan secara eksternal.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 5: POV Merchant - Pendaftaran -->
+  <section class="slide" id="slide-4">
+    <div class="slide-inner">
+      <div class="slide-label">POV MERCHANT: PENGALAMAN AWAL</div>
+      <h2>Alur Pendaftaran & <span class="accent-orange">Validasi Sistem</span></h2>
+      <div
+        style="display: flex; flex-direction: column; gap: 15px; background: rgba(245, 158, 11, 0.05); padding: 30px; border-radius: var(--radius); border: 1px solid rgba(245, 158, 11, 0.2);">
+        <p style="font-size: 1.05rem; line-height: 1.6; color: var(--text-main);">
+          Aplikasi akan memunculkan menu daftar Invoice Reguler Merchant (Misal: <strong>INV-JAN40</strong> dan
+          <strong>INV-FEB50</strong>) yang jatuh temponya tersisa <strong>Kurang dari 7 Hari</strong>.
+        </p>
+        <p style="font-size: 1.05rem; line-height: 1.6; color: var(--text-main);">
+          Misalkan Limit Akun adalah <strong>Rp 60 Juta</strong>. Jika Merchant mencoba untuk memilih salah satu Invoice
+          tersebut yang totalnya lebih besar dari limit kredit dan menekan <strong>"Perpanjang Tempo"</strong>, sistem
+          melakukan validasi berikut:
+        </p>
+        <h4 style="margin-top: 5px; font-size: 1.15rem; color: var(--accent-orange);">⚠️ Persyaratan Pembayaran Parsial
+        </h4>
+        <p
+          style="font-size: 1rem; line-height: 1.5; color: var(--text-muted); background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px;">
+          Apabila tagihan (<strong>Rp 90 Juta</strong>) menabrak batas limit yang tersedia,
+          sistem mengatur syarat otomatis: Menahan proses perpanjangan dan mengharuskan pemotongan sisa tagihan.
+          Merchant diwajibkan menyetor uang selisihnya yakni <strong>Rp 30 Juta</strong> secara cash/VA agar limit bisa
+          membiayai sisa 60 Jutanya (Sejajar dengan Plafon).
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 6: POV Merchant - Revolving Limit -->
+  <section class="slide" id="slide-5">
+    <div class="slide-inner">
+      <div class="slide-label">POV MERCHANT: SIMULASI CICILAN</div>
+      <h2>Mekanisme <span class="accent-green">Limit Bergulir (Revolving)</span></h2>
+      <div class="grid-2">
+        <div style="display:flex; flex-direction:column; gap:20px;">
+          <p style="font-size:1.15rem; line-height:1.7; color:var(--text-muted);">
+            Sistem bekerja mengadaptasi sistem Limit Bergulir. Limit tidak terkunci secara terikat pada satu id
+            transaksi secara permanen, tetapi terkait langsung pada status akun pembayaran.
+          </p>
+          <div
+            style="background: rgba(16, 185, 129, 0.1); border-left: 4px solid var(--accent-green); padding: 20px; border-radius: 8px;">
+            <strong style="color:var(--accent-green); font-size:1.1rem; display:block; margin-bottom:10px">Contoh Alur
+              Aktif:</strong>
+            <p style="color:var(--text-main); line-height:1.5;">Saat Merchant berhasil mencatat pembayaran pokok
+              <strong>20 Juta</strong> di Minggu Pertama, limit pembayaran akun Fintech1000s mereka langsung
+              dikembalikan ke kuota sebesar <strong>+20 Juta</strong>. Limit aktif tersebut dapat digunakan pada
+              pelunasan tagihan <strong>INV-M1000-B34Y</strong> lainnya secara instan.
+            </p>
+          </div>
+        </div>
+        <div class="ui-mockup"
+          style="background:#050505; border-color:#222; box-shadow: 0 0 40px rgba(16, 185, 129, 0.1);">
+          <div class="ui-header">
+            <div class="ui-dot r"></div>
+            <div class="ui-dot y"></div>
+            <div class="ui-dot g"></div>
+          </div>
+          <div style="padding:40px; text-align:center;">
+            <div style="margin-bottom:30px">
+              <h4 style="color:var(--text-muted); font-weight:normal; letter-spacing:1px; margin-bottom:10px">LIMIT
+                KREDIT TERSEDIA</h4>
+              <h2 style="font-size:3.5rem; color:var(--accent-green); margin:0">Rp 20.000.000</h2>
+              <div style="font-size:0.9rem; color:#666; margin-top:5px">Plafon Maksimal: Rp 60.000.000</div>
+            </div>
+            <div style="background:#111; padding:20px; border-radius:8px; border:1px dashed #333; text-align:left">
+              <div style="display:flex; justify-content:space-between; margin-bottom:10px;">
+                <span style="color:#aaa">Inv. <strong style="color:#fff">INV-M1000-A12X</strong></span>
+                <span style="color:#ef4444">- 40 Jt</span>
+              </div>
+              <div style="display:flex; justify-content:space-between; border-top:1px solid #333; padding-top:10px;">
+                <span style="color:var(--accent-cyan)">Plafon Aktif Siap Pakai</span>
+                <strong style="color:var(--accent-green)">+ 20 Jt</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 6.5: Timeline Study Case -->
+  <section class="slide" id="slide-5-1">
+    <div class="slide-inner">
+      <div class="slide-label">STUDI KASUS NYATA</div>
+      <h2>Kronologi Pembiayaan <span class="accent-orange">(Kasus Multi-PO)</span></h2>
+      <div style="display:flex; flex-direction:column; gap:15px; margin-top:20px;">
+
+        <div style="display:flex; align-items:stretch; gap:15px;">
+          <div style="background:var(--accent-cyan); width:4px; border-radius:2px;"></div>
+          <div style="background:rgba(255,255,255,0.05); padding:15px 25px; flex:1; border-radius:8px;">
+            <h4 style="color:var(--accent-cyan); font-size:1.1rem; margin-bottom:5px;">1. Akumulasi Transaksi Merchant
+            </h4>
+            <p style="color:#aaa; font-size:0.95rem; line-height:1.5;">
+              • <strong>10 Jan:</strong> Order Semen Tiga Roda (INV-M1000-JAN40) - <strong>Rp 40 Juta</strong>. Tempo 45
+              Hr (24 Feb)<br>
+              • <strong>10 Feb:</strong> Order Besi Beton (INV-M1000-FEB50) - <strong>Rp 50 Juta</strong>. Tempo 30 Hr
+              (12 Mar)
+            </p>
+          </div>
+        </div>
+
+        <div style="display:flex; align-items:stretch; gap:15px;">
+          <div style="background:var(--accent-green); width:4px; border-radius:2px;"></div>
+          <div style="background:rgba(255,255,255,0.05); padding:15px 25px; flex:1; border-radius:8px;">
+            <h4 style="color:var(--accent-green); font-size:1.1rem; margin-bottom:5px;">2. Pengajuan Pertama (18
+              Februari) - <em>Plafon Limit 60 Jt</em></h4>
+            <p style="color:#aaa; font-size:0.95rem; line-height:1.5;">H-6 jatuh tempo INV-JAN40, Merchant ajukan
+              perpanjangan tempo. Validasi: Tagihan (40 Jt) &lt; Limit Bebas (60 Jt). <strong>Sistem
+                Auto-Approve!</strong> Sisa limit aktif: Rp 20 Juta.</p>
+          </div>
+        </div>
+
+        <div style="display:flex; align-items:stretch; gap:15px;">
+          <div style="background:var(--accent-orange); width:4px; border-radius:2px;"></div>
+          <div style="background:rgba(255,255,255,0.05); padding:15px 25px; flex:1; border-radius:8px;">
+            <h4 style="color:var(--accent-orange); font-size:1.1rem; margin-bottom:5px;">3. Benturan Limit (10 Maret) -
+              <em>Sisa Limit 20 Jt</em>
+            </h4>
+            <p style="color:#aaa; font-size:0.95rem; line-height:1.5;">H-2 jatuh tempo INV-FEB50, Merchant minta tempo
+              50 Juta. Validasi Gagal: Sisa Limit (20 Jt) &lt; (50 Jt). Limit Kurang 30 Jt. Merchant <strong>otomatis
+                diharuskan mencicil Pokok 30 Juta terlebih dahulu (dari INV-JAN40)</strong>. Setelah cicilan masuk,
+              limit pulih (+30Jt) menjadi 50 Juta, dan sistem Auto-Approve tagihan kedua!</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 7: Payment Architecture (2 Buttons) -->
+  <section class="slide" id="slide-6">
+    <div class="slide-inner">
+      <div class="slide-label">POV MERCHANT: ANTARMUKA PEMBAYARAN</div>
+      <h2>Transparansi Tagihan: <span class="accent-blue">2 Tombol Pembayaran UI</span></h2>
+      <div class="ui-body" style="padding:0; margin-top:20px;">
+        <div style="flex:1;">
+          <p style="font-size:1.15rem; line-height:1.6; color:var(--text-muted); margin-bottom:20px;">
+            Desain antarmuka tagihan dibangun atas konsep <strong>Per-Invoice</strong>. Tombol-tombol pembayaran di
+            bawah ini akan muncul melekat pada setiap baris spesifik Invoice (Misal: baris khusus Invoice ABC1) agar
+            siklus pokok dan bunganya tidak tercampur dengan tagihan lain.
+          </p>
+          <p style="font-size:1.15rem; line-height:1.6; color:var(--text-main);">
+            Terdapat dua form utama dan dua button berbeda: Form Cicil Pokok <strong>(Kiri)</strong> digunakan khusus
+            untuk
+            merestorasi utang pokok, sedangkan Form Pelunasan <strong>(Kanan)</strong> merupakan perhitungan final
+            tagihan mutlak agar status invoice terkonfirmasi lunas di sistem.
+          </p>
+        </div>
+
+        <div class="ui-mockup" style="flex:1.2; transform: scale(0.85); transform-origin: top center;">
+          <div class="ui-header">
+            <div class="ui-dot r"></div>
+            <div class="ui-dot y"></div>
+            <div class="ui-dot g"></div>
+          </div>
+          <div style="padding:20px; display:flex; flex-direction:column; gap:15px;">
+            <div class="btn-mock btn-blue">
+              <h4>1. Tombol "Cicil Pokok"</h4>
+              <p style="color:var(--text-muted); font-size:0.9rem; line-height:1.5;">Pengisian nominal khusus memotong
+                nominal pokok utang. Nilai persentase bunga tidak terdampak di sini.</p>
+              <div class="field">
+                <span>Rp [ Kolom input nominal manual oleh Merchant ]</span>
+                <span class="kw" style="cursor:pointer">GET VIRTUAL ACCOUNT</span>
+              </div>
+            </div>
+
+            <div class="btn-mock btn-green">
+              <h4>2. Tombol "Lunasi Seluruh Tagihan"</h4>
+              <p style="color:var(--text-muted); font-size:0.9rem; line-height:1.5;">Menghasilkan besaran VA yang
+                merangkum gabungan sisa pokok dan kalkulasi bunga tagihan terakumulasi.</p>
+              <div class="field" style="background:#0f172a80; border-color:transparent; opacity:0.7">
+                <span>Rp 10.300.000 <span style="font-size:0.7rem; color:var(--accent-red)">(Nominal Sistem/Disabled
+                    Input)</span></span>
+                <span class="str" style="cursor:pointer">GET VIRTUAL ACCOUNT</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 8: Day 57 Logic -->
+  <section class="slide" id="slide-7">
+    <div class="slide-inner">
+      <div class="slide-label">POV MERCHANT: REGULASI SISTEM MATI</div>
+      <h2>Skenario <span class="accent-red">Batas Maksimal Tempo (Hari Ke-57)</span></h2>
+      <div
+        style="background: rgba(239, 68, 68, 0.05); border: 1px solid rgba(239, 68, 68, 0.2); padding: 40px; border-radius: var(--radius); display: flex; flex-direction: column; gap: 20px;">
+        <p style="font-size:1.15rem; color:var(--text-muted); line-height:1.6">
+          Kelonggaran durasi perpanjangan tempo berjalan maksimum hingga <strong>56 Hari (8 Minggu Cicilan)</strong>.
+          Pada hari ke-57, jika batas tersebut tidak terselesaikan, sistem secara otonom akan mengeksekusi mitigasi
+          status berikut:
+        </p>
+        <ul style="list-style:none; padding:0; margin-top:10px; display:flex; flex-direction:column; gap:15px;">
+          <li style="display:flex; align-items:flex-start; gap:15px;">
+            <span style="font-size:1.5rem">🔒</span>
+            <div><strong style="color:var(--accent-red); font-size:1.2rem">Pemblokiran Akun Transaksi
+                Mitra1000s</strong><br><span style="color:#aaa; font-size:1rem; line-height:1.5">Akses perbelanjaan akun
+                dihentikan untuk mencegah ekspansi kerugian.</span></div>
+          </li>
+          <li style="display:flex; align-items:flex-start; gap:15px;">
+            <span style="font-size:1.5rem">📈</span>
+            <div><strong style="color:var(--accent-cyan); font-size:1.2rem">Akumulasi Bunga Tanpa
+                Henti</strong><br><span style="color:#aaa; font-size:1rem; line-height:1.5">Algoritma perhitungan bunga
+                0.25% mingguan akan terus dihitung dan ditambahkan tanpa batas kedaluwarsa.</span></div>
+          </li>
+          <li style="display:flex; align-items:flex-start; gap:15px;">
+            <span style="font-size:1.5rem">📢</span>
+            <div><strong style="color:var(--accent-orange); font-size:1.2rem">Perubahan Status Kredit</strong><br><span
+                style="color:#aaa; font-size:1rem; line-height:1.5">Pembaruan ke format penagihan manual oleh Selling
+                Agent untuk intervensi lebih lanjut.</span></div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 9: Master Sequence Diagram -->
+  <section class="slide" id="slide-8">
+    <div class="slide-inner">
+      <div class="slide-label">VISUALISASI AKHIR</div>
+      <h2>Peta Diagram <span class="accent-purple">End-To-End (Seluruh Aktor)</span></h2>
+      <div class="diagram-container" onclick="openZoom(this)">
+        <img src="technical_sequence.png" alt="Sequence Diagram Technical Flow"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+        <div class="empty-diagram-hint" style="display:none; padding:80px; text-align:center;">
+          <div style="font-size: 3rem; margin-bottom: 20px;">🗺️</div>
+          <h3 style="color:#fff; margin-bottom:10px;">Gambaran Alur Belum Dimasukkan</h3>
+          <span style="font-size:1rem; color:var(--text-muted); line-height: 1.6;">Harap generate bentuk Giant Sequence
+            Diagram Fintech1000s dari Live-Editor dan simpan gambar PNG-nya di dalam folder ini dengan nama absolut
+            <strong>'technical_sequence.png'</strong>. Presentasi ini otomatis akan menampilkannya untuk dapat di-*zoom
+            in/zoom out* tanpa pecah.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Zoom Overlay -->
+  <div class="zoom-overlay" id="zoomOverlay">
+    <div class="zoom-controls">
+      <button class="zoom-btn" onclick="zoomOut(event)">−</button>
+      <button class="zoom-btn" onclick="zoomReset(event)">1:1</button>
+      <button class="zoom-btn" onclick="zoomIn(event)">+</button>
+    </div>
+    <button class="zoom-close" onclick="closeZoom()">✕</button>
+    <div class="zoom-content" id="zoomContent"></div>
+    <div class="zoom-hint"
+      style="position:absolute; bottom:15px; width:100%; text-align:center; color:var(--text-muted); font-size:0.8rem; pointer-events:none;">
+      Klik di luar diagram atau tekan Esc untuk menutup. Tahan Mouse untuk drag visual gambar diagram.
+    </div>
+  </div>
+
+  <script src="tech-deck.js"></script>
+</body>
+
+</html>
