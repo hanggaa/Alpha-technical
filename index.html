@@ -132,7 +132,7 @@
         </h4>
         <p
           style="font-size: 1rem; line-height: 1.5; color: var(--text-muted); background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px;">
-          Apabila tagihan (<strong>Rp 90 Juta</strong>) menabrak batas limit yang tersedia,
+          Apabila tagihan (<strong>Rp 90 Juta</strong>) melebihi batas limit yang tersedia,
           sistem mengatur syarat otomatis: Menahan proses perpanjangan dan mengharuskan pemotongan sisa tagihan.
           Merchant diwajibkan menyetor uang selisihnya yakni <strong>Rp 30 Juta</strong> secara cash/VA agar limit bisa
           membiayai sisa 60 Jutanya (Sejajar dengan Plafon).
@@ -159,7 +159,7 @@
             <p style="color:var(--text-main); line-height:1.5;">Saat Merchant berhasil mencatat pembayaran pokok
               <strong>20 Juta</strong> di Minggu Pertama, limit pembayaran akun Fintech1000s mereka langsung
               dikembalikan ke kuota sebesar <strong>+20 Juta</strong>. Limit aktif tersebut dapat digunakan pada
-              pelunasan tagihan <strong>INV-M1000-B34Y</strong> lainnya secara instan.
+              pelunasan tagihan <strong>INV-FEB40</strong> lainnya secara instan.
             </p>
           </div>
         </div>
@@ -179,7 +179,7 @@
             </div>
             <div style="background:#111; padding:20px; border-radius:8px; border:1px dashed #333; text-align:left">
               <div style="display:flex; justify-content:space-between; margin-bottom:10px;">
-                <span style="color:#aaa">Inv. <strong style="color:#fff">INV-M1000-A12X</strong></span>
+                <span style="color:#aaa">Inv. <strong style="color:#fff">INV-JAN40</strong></span>
                 <span style="color:#ef4444">- 40 Jt</span>
               </div>
               <div style="display:flex; justify-content:space-between; border-top:1px solid #333; padding-top:10px;">
@@ -206,9 +206,9 @@
             <h4 style="color:var(--accent-cyan); font-size:1.1rem; margin-bottom:5px;">1. Akumulasi Transaksi Merchant
             </h4>
             <p style="color:#aaa; font-size:0.95rem; line-height:1.5;">
-              • <strong>10 Jan:</strong> Order Semen Tiga Roda (INV-M1000-JAN40) - <strong>Rp 40 Juta</strong>. Tempo 45
+              • <strong>10 Jan:</strong> Order Semen Tiga Roda (INV-JAN40) - <strong>Rp 40 Juta</strong>. Tempo 45
               Hr (24 Feb)<br>
-              • <strong>10 Feb:</strong> Order Besi Beton (INV-M1000-FEB50) - <strong>Rp 50 Juta</strong>. Tempo 30 Hr
+              • <strong>10 Feb:</strong> Order Besi Beton (INV-FEB50) - <strong>Rp 50 Juta</strong>. Tempo 30 Hr
               (12 Mar)
             </p>
           </div>
@@ -233,8 +233,10 @@
             </h4>
             <p style="color:#aaa; font-size:0.95rem; line-height:1.5;">H-2 jatuh tempo INV-FEB50, Merchant minta tempo
               50 Juta. Validasi Gagal: Sisa Limit (20 Jt) &lt; (50 Jt). Limit Kurang 30 Jt. Merchant <strong>otomatis
-                diharuskan mencicil Pokok 30 Juta terlebih dahulu (dari INV-JAN40)</strong>. Setelah cicilan masuk,
-              limit pulih (+30Jt) menjadi 50 Juta, dan sistem Auto-Approve tagihan kedua!</p>
+                diharuskan mencicil Pokok 30 Juta terlebih dahulu dari FIN-JAN40 (hasil restrukturisasi INV-JAN40) atau
+                cicil pokok 30 juta dari INV-FEB50</strong>. Setelah cicilan masuk, dan sistem mendeteksi bahwa limit
+              kredit sejajar dengan jumlah utang INV-FEB50, maka sistem Auto-Approve perpanjangan tempo INV-FEB50.
+            </p>
           </div>
         </div>
 
@@ -251,8 +253,8 @@
         <div style="flex:1;">
           <p style="font-size:1.15rem; line-height:1.6; color:var(--text-muted); margin-bottom:20px;">
             Desain antarmuka tagihan dibangun atas konsep <strong>Per-Invoice</strong>. Tombol-tombol pembayaran di
-            bawah ini akan muncul melekat pada setiap baris spesifik Invoice (Misal: baris khusus Invoice ABC1) agar
-            siklus pokok dan bunganya tidak tercampur dengan tagihan lain.
+            bawah ini akan muncul melekat pada setiap baris spesifik Invoice (Misal: baris khusus Invoice FIN-JAN40)
+            agar siklus pokok dan bunganya tidak tercampur dengan tagihan lain.
           </p>
           <p style="font-size:1.15rem; line-height:1.6; color:var(--text-main);">
             Terdapat dua form utama dan dua button berbeda: Form Cicil Pokok <strong>(Kiri)</strong> digunakan khusus
