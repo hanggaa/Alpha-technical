@@ -232,11 +232,20 @@
             <h4 style="color:var(--accent-orange); font-size:1.1rem; margin-bottom:5px;">3. Benturan Limit (10 Maret) -
               <em>Sisa Limit 20 Jt</em>
             </h4>
-            <p style="color:#aaa; font-size:0.95rem; line-height:1.5;">H-2 jatuh tempo INV-FEB50, Merchant minta tempo
-              50 Juta. Validasi Gagal: Sisa Limit (20 Jt) &lt; (50 Jt). Limit Kurang 30 Jt. Merchant <strong>otomatis
-                diharuskan mencicil Pokok 30 Juta terlebih dahulu dari FIN-JAN40 (hasil restrukturisasi INV-JAN40) atau
-                cicil pokok 30 juta dari INV-FEB50</strong>. Setelah cicilan masuk, dan sistem mendeteksi bahwa limit
-              kredit sejajar dengan jumlah utang INV-FEB50, maka sistem Auto-Approve perpanjangan tempo INV-FEB50.
+            <p style="color:#aaa; font-size:0.95rem; line-height:1.5;">
+              Pada H-2 jatuh tempo INV-FEB50, Merchant mengajukan perpanjangan tempo sebesar Rp50 Juta.
+              Validasi gagal karena sisa limit aktif (Rp20 Juta) &lt;
+              nominal pengajuan (Rp50 Juta), sehingga terdapat kekurangan limit sebesar Rp30 Juta.
+              Oleh karena itu, Merchant
+              <strong>otomatis diharuskan untuk mencicil pokok sebesar
+                Rp30 Juta terlebih dahulu dari tagihan FIN-JAN40 (hasil restrukturisasi INV-JAN40),
+                atau mencicil pokok Rp30 Juta langsung dari invoice INV-FEB50
+              </strong>.
+              Setelah cicilan pokok tersebut dibayarkan,
+              Merchant dapat mengajukan ulang perpanjangan tempo untuk INV-FEB50.
+              Saat sistem mendeteksi bahwa limit kredit sudah mencukupi
+              tagihan INV-FEB50, maka sistem akan secara otomatis
+              menyetujui (Auto-Approve) perpanjangan tempo tersebut.
             </p>
           </div>
         </div>
@@ -245,91 +254,103 @@
     </div>
   </section>
 
-  <!-- SLIDE 7: Payment Architecture (2 Buttons) -->
+  <!-- SLIDE 8: Payment UI Per-Invoice -->
   <section class="slide" id="slide-6">
     <div class="slide-inner">
       <div class="slide-label">POV MERCHANT: ANTARMUKA PEMBAYARAN</div>
-      <h2>Transparansi Tagihan: <span class="accent-blue">2 Tombol Pembayaran UI</span></h2>
-      <div class="ui-body" style="padding:0; margin-top:20px;">
-        <div style="flex:1;">
-          <p style="font-size:1.15rem; line-height:1.6; color:var(--text-muted); margin-bottom:20px;">
-            Desain antarmuka tagihan dibangun atas konsep <strong>Per-Invoice</strong>. Tombol-tombol pembayaran di
-            bawah ini akan muncul melekat pada setiap baris spesifik Invoice (Misal: baris khusus Invoice FIN-JAN40)
-            agar siklus pokok dan bunganya tidak tercampur dengan tagihan lain.
-          </p>
-          <p style="font-size:1.15rem; line-height:1.6; color:var(--text-main);">
-            Terdapat dua form utama dan dua button berbeda: Form Cicil Pokok <strong>(Kiri)</strong> digunakan khusus
-            untuk
-            merestorasi utang pokok, sedangkan Form Pelunasan <strong>(Kanan)</strong> merupakan perhitungan final
-            tagihan mutlak agar status invoice terkonfirmasi lunas di sistem.
-          </p>
-        </div>
+      <h2>Transparansi Tagihan: <span class="accent-blue">Pembayaran Per-Invoice</span></h2>
 
-        <div class="ui-mockup" style="flex:1.2; transform: scale(0.85); transform-origin: top center;">
-          <div class="ui-header">
-            <div class="ui-dot r"></div>
-            <div class="ui-dot y"></div>
-            <div class="ui-dot g"></div>
-          </div>
-          <div style="padding:20px; display:flex; flex-direction:column; gap:15px;">
-            <div class="btn-mock btn-blue">
-              <h4>1. Tombol "Cicil Pokok"</h4>
-              <p style="color:var(--text-muted); font-size:0.9rem; line-height:1.5;">Pengisian nominal khusus memotong
-                nominal pokok utang. Nilai persentase bunga tidak terdampak di sini.</p>
-              <div class="field">
-                <span>Rp [ Kolom input nominal manual oleh Merchant ]</span>
-                <span class="kw" style="cursor:pointer">GET VIRTUAL ACCOUNT</span>
-              </div>
-            </div>
-
-            <div class="btn-mock btn-green">
-              <h4>2. Tombol "Lunasi Seluruh Tagihan"</h4>
-              <p style="color:var(--text-muted); font-size:0.9rem; line-height:1.5;">Menghasilkan besaran VA yang
-                merangkum gabungan sisa pokok dan kalkulasi bunga tagihan terakumulasi.</p>
-              <div class="field" style="background:#0f172a80; border-color:transparent; opacity:0.7">
-                <span>Rp 10.300.000 <span style="font-size:0.7rem; color:var(--accent-red)">(Nominal Sistem/Disabled
-                    Input)</span></span>
-                <span class="str" style="cursor:pointer">GET VIRTUAL ACCOUNT</span>
-              </div>
-            </div>
-          </div>
-        </div>
+      <!-- Create Billing Action Button -->
+      <div style="display:flex; margin-top:16px; margin-bottom:16px;">
+        <button style="width:100%; max-width:100%; background:rgba(34,211,238,0.12); border:1px dashed rgba(34,211,238,0.5); color:var(--accent-cyan); padding:14px 20px; border-radius:10px; font-family:'Fira Code',monospace; font-size:0.95rem; font-weight:600; cursor:pointer; letter-spacing:0.5px;">
+          + Create Billing
+        </button>
       </div>
-    </div>
-  </section>
 
-  <!-- SLIDE 8: Day 57 Logic -->
-  <section class="slide" id="slide-7">
-    <div class="slide-inner">
-      <div class="slide-label">POV MERCHANT: PERATURAN MENGIKAT</div>
-      <h2>Skenario <span class="accent-red">Batas Maksimal Tempo (Hari Ke-57)</span></h2>
-      <div
-        style="background: rgba(239, 68, 68, 0.05); border: 1px solid rgba(239, 68, 68, 0.2); padding: 40px; border-radius: var(--radius); display: flex; flex-direction: column; gap: 20px; overflow-y:auto; max-height:calc(100vh - 250px); padding-bottom:30px;">
-        <p style="font-size:1.15rem; color:var(--text-muted); line-height:1.6">
-          Kelonggaran durasi perpanjangan tempo berjalan maksimum hingga <strong>56 Hari (8 Minggu Cicilan)</strong>.
-          Pada hari ke-57, jika batas tersebut tidak terselesaikan, sistem secara otonom akan mengeksekusi mitigasi
-          status berikut:
-        </p>
-        <ul style="list-style:none; padding:0; margin-top:10px; display:flex; flex-direction:column; gap:15px;">
-          <li style="display:flex; align-items:flex-start; gap:15px;">
-            <span style="font-size:1.5rem">🔒</span>
-            <div><strong style="color:var(--accent-red); font-size:1.2rem">Pemblokiran Akun Transaksi
-                Mitra1000s</strong><br><span style="color:#aaa; font-size:1rem; line-height:1.5">Akses perbelanjaan akun
-                dihentikan untuk mencegah ekspansi kerugian.</span></div>
-          </li>
-          <li style="display:flex; align-items:flex-start; gap:15px;">
-            <span style="font-size:1.5rem">📈</span>
-            <div><strong style="color:var(--accent-cyan); font-size:1.2rem">Akumulasi Bunga Tanpa
-                Henti</strong><br><span style="color:#aaa; font-size:1rem; line-height:1.5">Algoritma perhitungan bunga
-                0.25% mingguan akan terus dihitung dan ditambahkan tanpa batas kedaluwarsa.</span></div>
-          </li>
-          <li style="display:flex; align-items:flex-start; gap:15px;">
-            <span style="font-size:1.5rem">📢</span>
-            <div><strong style="color:var(--accent-orange); font-size:1.2rem">Perubahan Status Kredit</strong><br><span
-                style="color:#aaa; font-size:1rem; line-height:1.5">Pembaruan ke format penagihan manual oleh Selling
-                Agent untuk intervensi lebih lanjut.</span></div>
-          </li>
-        </ul>
+      <!-- Invoice List (Grid 3 Columns) -->
+      <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; overflow-y:auto; max-height:calc(100vh - 220px); padding-right:12px; padding-bottom:20px;">
+
+        <!-- Invoice 1 -->
+        <div style="background:rgba(6,182,212,0.04); border:1px solid rgba(6,182,212,0.25); border-radius:12px; overflow:hidden; display:flex; flex-direction:column;">
+          <div style="background:rgba(6,182,212,0.08); padding:12px 20px; border-bottom:1px solid rgba(6,182,212,0.2); display:flex; align-items:center; gap:10px;">
+            <input type="checkbox" style="width:16px; height:16px; accent-color:var(--accent-cyan); cursor:pointer;">
+            <span style="font-family:'Fira Code',monospace; font-size:0.75rem; color:var(--accent-cyan); background:rgba(6,182,212,0.15); padding:3px 10px; border-radius:20px;">FINTECH1000S</span>
+          </div>
+          <div style="padding:20px; font-family:'Fira Code',monospace; display:flex; flex-direction:column; gap:10px; flex:1;">
+            <div style="color:var(--accent-cyan); font-size:1.1rem; font-weight:700;">FIN/202601/0108</div>
+            <div style="color:#777; font-size:0.85rem;">Ref: INV/202601/0108</div>
+            <div style="color:#ccc; font-size:0.85rem; margin-bottom:4px;">INTI TRIO BHAKTI JAYA, PT - TBP</div>
+            <hr style="border-color:rgba(6,182,212,0.15); width:100%; margin:0;">
+            <div style="display:flex; justify-content:space-between; font-size:0.85rem;"><span style="color:#888;">Pokok Pinjaman Awal</span><span style="color:#ccc;">Rp 40.000.000</span></div>
+            <div style="display:flex; justify-content:space-between; font-size:0.85rem;"><span style="color:#888;">Sisa Pokok Pinjaman</span><span style="color:var(--accent-orange); font-weight:600;">Rp 25.000.000</span></div>
+            <div style="display:flex; justify-content:space-between; font-size:0.85rem;"><span style="color:#888;">Bunga Terakumulasi</span><span style="color:var(--accent-red); text-align:right;">Rp 300.000 <span style="font-size:0.75rem; color:#555; display:block;">(Minggu ke-3)</span></span></div>
+            <div style="display:flex; justify-content:space-between; font-size:0.85rem;"><span style="color:#888;">Due Date</span><span style="color:#ccc;">24 Feb 2026</span></div>
+            
+            <div style="display:flex; gap:12px; margin-top:auto; padding-top:16px;">
+              <button style="flex:1; background:rgba(16,185,129,0.12); border:1px solid rgba(16,185,129,0.5); color:var(--accent-green); padding:10px; border-radius:8px; font-family:'Fira Code',monospace; font-size:0.8rem; font-weight:600; cursor:pointer;">
+                Cicil Pokok
+              </button>
+              <button style="flex:1; background:rgba(59,130,246,0.12); border:1px solid rgba(59,130,246,0.5); color:var(--accent-blue); padding:10px; border-radius:8px; font-family:'Fira Code',monospace; font-size:0.8rem; font-weight:600; cursor:pointer;">
+                Lunasi Tagihan
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Invoice 2 -->
+        <div style="background:rgba(168,85,247,0.04); border:1px solid rgba(168,85,247,0.25); border-radius:12px; overflow:hidden; display:flex; flex-direction:column;">
+          <div style="background:rgba(168,85,247,0.08); padding:12px 20px; border-bottom:1px solid rgba(168,85,247,0.2); display:flex; align-items:center; gap:10px;">
+            <input type="checkbox" style="width:16px; height:16px; accent-color:var(--accent-purple); cursor:pointer;">
+            <span style="font-family:'Fira Code',monospace; font-size:0.75rem; color:var(--accent-purple); background:rgba(168,85,247,0.15); padding:3px 10px; border-radius:20px;">FINTECH1000S</span>
+          </div>
+          <div style="padding:20px; font-family:'Fira Code',monospace; display:flex; flex-direction:column; gap:10px; flex:1;">
+            <div style="color:var(--accent-purple); font-size:1.1rem; font-weight:700;">FIN/202602/0215</div>
+            <div style="color:#777; font-size:0.85rem;">Ref: INV/202602/0215</div>
+            <div style="color:#ccc; font-size:0.85rem; margin-bottom:4px;">INTI TRIO BHAKTI JAYA, PT - TBP</div>
+            <hr style="border-color:rgba(168,85,247,0.15); width:100%; margin:0;">
+            <div style="display:flex; justify-content:space-between; font-size:0.85rem;"><span style="color:#888;">Pokok Pinjaman Awal</span><span style="color:#ccc;">Rp 50.000.000</span></div>
+            <div style="display:flex; justify-content:space-between; font-size:0.85rem;"><span style="color:#888;">Sisa Pokok Pinjaman</span><span style="color:var(--accent-orange); font-weight:600;">Rp 50.000.000</span></div>
+            <div style="display:flex; justify-content:space-between; font-size:0.85rem;"><span style="color:#888;">Bunga Terakumulasi</span><span style="color:var(--accent-red); text-align:right;">Rp 125.000 <span style="font-size:0.75rem; color:#555; display:block;">(Minggu ke-1)</span></span></div>
+            <div style="display:flex; justify-content:space-between; font-size:0.85rem;"><span style="color:#888;">Due Date</span><span style="color:#ccc;">12 Mar 2026</span></div>
+            
+            <div style="display:flex; gap:12px; margin-top:auto; padding-top:16px;">
+              <button style="flex:1; background:rgba(16,185,129,0.12); border:1px solid rgba(16,185,129,0.5); color:var(--accent-green); padding:10px; border-radius:8px; font-family:'Fira Code',monospace; font-size:0.8rem; font-weight:600; cursor:pointer;">
+                Cicil Pokok
+              </button>
+              <button style="flex:1; background:rgba(59,130,246,0.12); border:1px solid rgba(59,130,246,0.5); color:var(--accent-blue); padding:10px; border-radius:8px; font-family:'Fira Code',monospace; font-size:0.8rem; font-weight:600; cursor:pointer;">
+                Lunasi Tagihan
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Invoice 3 -->
+        <div style="background:rgba(16,185,129,0.04); border:1px solid rgba(16,185,129,0.25); border-radius:12px; overflow:hidden; display:flex; flex-direction:column;">
+          <div style="background:rgba(16,185,129,0.08); padding:12px 20px; border-bottom:1px solid rgba(16,185,129,0.2); display:flex; align-items:center; gap:10px;">
+            <input type="checkbox" style="width:16px; height:16px; accent-color:var(--accent-green); cursor:pointer;">
+            <span style="font-family:'Fira Code',monospace; font-size:0.75rem; color:var(--accent-green); background:rgba(16,185,129,0.15); padding:3px 10px; border-radius:20px;">FINTECH1000S</span>
+          </div>
+          <div style="padding:20px; font-family:'Fira Code',monospace; display:flex; flex-direction:column; gap:10px; flex:1;">
+            <div style="color:var(--accent-green); font-size:1.1rem; font-weight:700;">FIN/202603/0331</div>
+            <div style="color:#777; font-size:0.85rem;">Ref: INV/202603/0331</div>
+            <div style="color:#ccc; font-size:0.85rem; margin-bottom:4px;">INTI TRIO BHAKTI JAYA, PT - TBP</div>
+            <hr style="border-color:rgba(16,185,129,0.15); width:100%; margin:0;">
+            <div style="display:flex; justify-content:space-between; font-size:0.85rem;"><span style="color:#888;">Pokok Pinjaman Awal</span><span style="color:#ccc;">Rp 30.000.000</span></div>
+            <div style="display:flex; justify-content:space-between; font-size:0.85rem;"><span style="color:#888;">Sisa Pokok Pinjaman</span><span style="color:var(--accent-orange); font-weight:600;">Rp 10.000.000</span></div>
+            <div style="display:flex; justify-content:space-between; font-size:0.85rem;"><span style="color:#888;">Bunga Terakumulasi</span><span style="color:var(--accent-red); text-align:right;">Rp 512.500 <span style="font-size:0.75rem; color:#555; display:block;">(Minggu ke-7)</span></span></div>
+            <div style="display:flex; justify-content:space-between; font-size:0.85rem;"><span style="color:#888;">Due Date</span><span style="color:#ccc;">05 Apr 2026</span></div>
+            
+            <div style="display:flex; gap:12px; margin-top:auto; padding-top:16px;">
+              <button style="flex:1; background:rgba(16,185,129,0.12); border:1px solid rgba(16,185,129,0.5); color:var(--accent-green); padding:10px; border-radius:8px; font-family:'Fira Code',monospace; font-size:0.8rem; font-weight:600; cursor:pointer;">
+                Cicil Pokok
+              </button>
+              <button style="flex:1; background:rgba(59,130,246,0.12); border:1px solid rgba(59,130,246,0.5); color:var(--accent-blue); padding:10px; border-radius:8px; font-family:'Fira Code',monospace; font-size:0.8rem; font-weight:600; cursor:pointer;">
+                Lunasi Tagihan
+              </button>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -384,20 +405,18 @@
             <div style="color:#777; font-size:0.85rem;">Ref: INV/202601/0108</div>
             <div style="color:#ccc; font-size:0.9rem; margin-bottom:8px;">INTI TRIO BHAKTI JAYA, PT - TBP</div>
             <hr style="border-color:rgba(6,182,212,0.15);">
-            <div style="display:flex; justify-content:space-between; font-size:0.88rem;"><span style="color:#888;">Pokok
-                Pinjaman Awal</span><span style="color:#ccc;">Rp 540,000</span></div>
-            <div style="display:flex; justify-content:space-between; font-size:0.88rem;"><span style="color:#888;">Sisa
-                Pokok Pinjaman</span><span style="color:var(--accent-orange); font-weight:600;">Rp 200,000</span></div>
-            <div style="display:flex; justify-content:space-between; font-size:0.88rem;"><span style="color:#888;">Bunga
-                Terakumulasi</span><span style="color:var(--accent-red);">Rp 4,050</span></div>
-            <hr style="border-color:rgba(6,182,212,0.15);">
-            <div style="display:flex; gap:10px; margin-top:4px;">
-              <button
-                style="flex:1; background:rgba(16,185,129,0.15); border:1px solid rgba(16,185,129,0.4); color:var(--accent-green); padding:10px; border-radius:8px; font-family:'Fira Code',monospace; font-size:0.8rem; cursor:default;">Cicil
-                Pokok</button>
-              <button
-                style="flex:1; background:rgba(59,130,246,0.15); border:1px solid rgba(59,130,246,0.4); color:var(--accent-blue); padding:10px; border-radius:8px; font-family:'Fira Code',monospace; font-size:0.8rem; cursor:default;">Lunasi
-                Tagihan</button>
+            <div style="display:flex; justify-content:space-between; font-size:0.88rem;"><span style="color:#888;">Pokok Pinjaman Awal</span><span style="color:#ccc;">Rp 540,000</span></div>
+            <div style="display:flex; justify-content:space-between; font-size:0.88rem;"><span style="color:#888;">Sisa Pokok Pinjaman</span><span style="color:var(--accent-orange); font-weight:600;">Rp 200,000</span></div>
+            <div style="display:flex; justify-content:space-between; font-size:0.88rem;"><span style="color:#888;">Bunga Terakumulasi</span><span style="color:var(--accent-red);">Rp 4,050 <span style="font-size:0.75rem; color:#555;">(Minggu ke-1)</span></span></div>
+            <div style="display:flex; justify-content:space-between; font-size:0.88rem;"><span style="color:#888;">Due Date</span><span style="color:#ccc;">24 Feb 2026</span></div>
+            
+            <div style="display:flex; gap:12px; margin-top:16px;">
+              <button style="flex:1; background:rgba(16,185,129,0.12); border:1px solid rgba(16,185,129,0.5); color:var(--accent-green); padding:10px; border-radius:8px; font-family:'Fira Code',monospace; font-size:0.85rem; font-weight:600; cursor:pointer;">
+                Cicil Pokok
+              </button>
+              <button style="flex:1; background:rgba(59,130,246,0.12); border:1px solid rgba(59,130,246,0.5); color:var(--accent-blue); padding:10px; border-radius:8px; font-family:'Fira Code',monospace; font-size:0.85rem; font-weight:600; cursor:pointer;">
+                Lunasi Tagihan
+              </button>
             </div>
           </div>
         </div>
@@ -406,6 +425,42 @@
       <p style="font-size:0.85rem; color:#555; margin-top:16px; font-family:'Fira Code',monospace;">* Prefix <span
           style="color:var(--accent-cyan);">FIN-</span> digunakan agar invoice restrukturisasi Fintech1000s mudah
         dibedakan dari invoice reguler <span style="color:#888;">INV-</span> Mitra1000s.</p>
+    </div>
+  </section>
+
+  <!-- SLIDE 8: Day 57 Logic -->
+  <section class="slide" id="slide-7">
+    <div class="slide-inner">
+      <div class="slide-label">POV MERCHANT: PERATURAN MENGIKAT</div>
+      <h2>Skenario <span class="accent-red">Batas Maksimal Tempo (Hari Ke-57)</span></h2>
+      <div
+        style="background: rgba(239, 68, 68, 0.05); border: 1px solid rgba(239, 68, 68, 0.2); padding: 40px; border-radius: var(--radius); display: flex; flex-direction: column; gap: 20px; overflow-y:auto; max-height:calc(100vh - 250px); padding-bottom:30px;">
+        <p style="font-size:1.15rem; color:var(--text-muted); line-height:1.6">
+          Kelonggaran durasi perpanjangan tempo berjalan maksimum hingga <strong>56 Hari (8 Minggu Cicilan)</strong>.
+          Pada hari ke-57, jika batas tersebut tidak terselesaikan, sistem secara otonom akan mengeksekusi mitigasi
+          status berikut:
+        </p>
+        <ul style="list-style:none; padding:0; margin-top:10px; display:flex; flex-direction:column; gap:15px;">
+          <li style="display:flex; align-items:flex-start; gap:15px;">
+            <span style="font-size:1.5rem">🔒</span>
+            <div><strong style="color:var(--accent-red); font-size:1.2rem">Pemblokiran Akun Transaksi
+                Mitra1000s</strong><br><span style="color:#aaa; font-size:1rem; line-height:1.5">Akses perbelanjaan akun
+                dihentikan untuk mencegah ekspansi kerugian.</span></div>
+          </li>
+          <li style="display:flex; align-items:flex-start; gap:15px;">
+            <span style="font-size:1.5rem">📈</span>
+            <div><strong style="color:var(--accent-cyan); font-size:1.2rem">Akumulasi Bunga Tanpa
+                Henti</strong><br><span style="color:#aaa; font-size:1rem; line-height:1.5">Algoritma perhitungan bunga
+                0.25% mingguan akan terus dihitung dan ditambahkan tanpa batas kedaluwarsa.</span></div>
+          </li>
+          <li style="display:flex; align-items:flex-start; gap:15px;">
+            <span style="font-size:1.5rem">📢</span>
+            <div><strong style="color:var(--accent-orange); font-size:1.2rem">Perubahan Status Kredit</strong><br><span
+                style="color:#aaa; font-size:1rem; line-height:1.5">Pembaruan ke format penagihan manual oleh Selling
+                Agent untuk intervensi lebih lanjut.</span></div>
+          </li>
+        </ul>
+      </div>
     </div>
   </section>
 
