@@ -261,8 +261,8 @@
       <h2>Transparansi Tagihan: <span class="accent-blue">Pembayaran Per-Invoice</span></h2>
 
       <!-- Create Billing Action Button -->
-      <div style="display:flex; margin-top:16px; margin-bottom:16px;">
-        <button style="width:100%; max-width:100%; background:rgba(34,211,238,0.12); border:1px dashed rgba(34,211,238,0.5); color:var(--accent-cyan); padding:14px 20px; border-radius:10px; font-family:'Fira Code',monospace; font-size:0.95rem; font-weight:600; cursor:pointer; letter-spacing:0.5px;">
+      <div style="display:flex; justify-content:flex-end; margin-top:4px; margin-bottom:8px;">
+        <button style="background:rgba(34,211,238,0.12); border:1px dashed rgba(34,211,238,0.5); color:var(--accent-cyan); padding:8px 16px; border-radius:8px; font-family:'Fira Code',monospace; font-size:0.85rem; font-weight:600; cursor:pointer; letter-spacing:0.5px;">
           + Create Billing
         </button>
       </div>
@@ -287,12 +287,17 @@
             <div style="display:flex; justify-content:space-between; font-size:0.85rem;"><span style="color:#888;">Due Date</span><span style="color:#ccc;">24 Feb 2026</span></div>
             
             <div style="display:flex; gap:12px; margin-top:auto; padding-top:16px;">
-              <button style="flex:1; background:rgba(16,185,129,0.12); border:1px solid rgba(16,185,129,0.5); color:var(--accent-green); padding:10px; border-radius:8px; font-family:'Fira Code',monospace; font-size:0.8rem; font-weight:600; cursor:pointer;">
+              <button onclick="this.parentElement.nextElementSibling.style.display = this.parentElement.nextElementSibling.style.display === 'none' ? 'flex' : 'none';" style="flex:1; background:rgba(16,185,129,0.12); border:1px solid rgba(16,185,129,0.5); color:var(--accent-green); padding:10px; border-radius:8px; font-family:'Fira Code',monospace; font-size:0.8rem; font-weight:600; cursor:pointer;">
                 Cicil Pokok
               </button>
               <button style="flex:1; background:rgba(59,130,246,0.12); border:1px solid rgba(59,130,246,0.5); color:var(--accent-blue); padding:10px; border-radius:8px; font-family:'Fira Code',monospace; font-size:0.8rem; font-weight:600; cursor:pointer;">
                 Lunasi Tagihan
               </button>
+            </div>
+            <!-- Cicilan Input Box -->
+            <div style="display:none; gap:8px; margin-top:12px;">
+              <input type="text" placeholder="Amount Cicil Pokok" style="flex:1; width:100%; background:rgba(0,0,0,0.4); border:1px solid rgba(255,255,255,0.1); color:#fff; padding:8px 12px; border-radius:6px; font-family:'Fira Code',monospace; font-size:0.75rem; outline:none;">
+              <button style="background:var(--accent-green); color:#000; border:none; padding:8px 16px; border-radius:6px; font-family:'Inter',sans-serif; font-weight:bold; cursor:pointer; font-size:0.75rem;">Simpan</button>
             </div>
           </div>
         </div>
@@ -314,12 +319,17 @@
             <div style="display:flex; justify-content:space-between; font-size:0.85rem;"><span style="color:#888;">Due Date</span><span style="color:#ccc;">12 Mar 2026</span></div>
             
             <div style="display:flex; gap:12px; margin-top:auto; padding-top:16px;">
-              <button style="flex:1; background:rgba(16,185,129,0.12); border:1px solid rgba(16,185,129,0.5); color:var(--accent-green); padding:10px; border-radius:8px; font-family:'Fira Code',monospace; font-size:0.8rem; font-weight:600; cursor:pointer;">
+              <button onclick="this.parentElement.nextElementSibling.style.display = this.parentElement.nextElementSibling.style.display === 'none' ? 'flex' : 'none';" style="flex:1; background:rgba(16,185,129,0.12); border:1px solid rgba(16,185,129,0.5); color:var(--accent-green); padding:10px; border-radius:8px; font-family:'Fira Code',monospace; font-size:0.8rem; font-weight:600; cursor:pointer;">
                 Cicil Pokok
               </button>
               <button style="flex:1; background:rgba(59,130,246,0.12); border:1px solid rgba(59,130,246,0.5); color:var(--accent-blue); padding:10px; border-radius:8px; font-family:'Fira Code',monospace; font-size:0.8rem; font-weight:600; cursor:pointer;">
                 Lunasi Tagihan
               </button>
+            </div>
+            <!-- Cicilan Input Box -->
+            <div style="display:none; gap:8px; margin-top:12px;">
+              <input type="text" placeholder="Amount Cicil Pokok" style="flex:1; width:100%; background:rgba(0,0,0,0.4); border:1px solid rgba(255,255,255,0.1); color:#fff; padding:8px 12px; border-radius:6px; font-family:'Fira Code',monospace; font-size:0.75rem; outline:none;">
+              <button style="background:var(--accent-green); color:#000; border:none; padding:8px 16px; border-radius:6px; font-family:'Inter',sans-serif; font-weight:bold; cursor:pointer; font-size:0.75rem;">Simpan</button>
             </div>
           </div>
         </div>
@@ -341,12 +351,17 @@
             <div style="display:flex; justify-content:space-between; font-size:0.85rem;"><span style="color:#888;">Due Date</span><span style="color:#ccc;">05 Apr 2026</span></div>
             
             <div style="display:flex; gap:12px; margin-top:auto; padding-top:16px;">
-              <button style="flex:1; background:rgba(16,185,129,0.12); border:1px solid rgba(16,185,129,0.5); color:var(--accent-green); padding:10px; border-radius:8px; font-family:'Fira Code',monospace; font-size:0.8rem; font-weight:600; cursor:pointer;">
+              <button onclick="this.parentElement.nextElementSibling.style.display = this.parentElement.nextElementSibling.style.display === 'none' ? 'flex' : 'none';" style="flex:1; background:rgba(16,185,129,0.12); border:1px solid rgba(16,185,129,0.5); color:var(--accent-green); padding:10px; border-radius:8px; font-family:'Fira Code',monospace; font-size:0.8rem; font-weight:600; cursor:pointer;">
                 Cicil Pokok
               </button>
               <button style="flex:1; background:rgba(59,130,246,0.12); border:1px solid rgba(59,130,246,0.5); color:var(--accent-blue); padding:10px; border-radius:8px; font-family:'Fira Code',monospace; font-size:0.8rem; font-weight:600; cursor:pointer;">
                 Lunasi Tagihan
               </button>
+            </div>
+            <!-- Cicilan Input Box -->
+            <div style="display:none; gap:8px; margin-top:12px;">
+              <input type="text" placeholder="Amount Cicil Pokok" style="flex:1; width:100%; background:rgba(0,0,0,0.4); border:1px solid rgba(255,255,255,0.1); color:#fff; padding:8px 12px; border-radius:6px; font-family:'Fira Code',monospace; font-size:0.75rem; outline:none;">
+              <button style="background:var(--accent-green); color:#000; border:none; padding:8px 16px; border-radius:6px; font-family:'Inter',sans-serif; font-weight:bold; cursor:pointer; font-size:0.75rem;">Simpan</button>
             </div>
           </div>
         </div>
@@ -411,12 +426,17 @@
             <div style="display:flex; justify-content:space-between; font-size:0.88rem;"><span style="color:#888;">Due Date</span><span style="color:#ccc;">24 Feb 2026</span></div>
             
             <div style="display:flex; gap:12px; margin-top:16px;">
-              <button style="flex:1; background:rgba(16,185,129,0.12); border:1px solid rgba(16,185,129,0.5); color:var(--accent-green); padding:10px; border-radius:8px; font-family:'Fira Code',monospace; font-size:0.85rem; font-weight:600; cursor:pointer;">
+              <button onclick="this.parentElement.nextElementSibling.style.display = this.parentElement.nextElementSibling.style.display === 'none' ? 'flex' : 'none';" style="flex:1; background:rgba(16,185,129,0.12); border:1px solid rgba(16,185,129,0.5); color:var(--accent-green); padding:10px; border-radius:8px; font-family:'Fira Code',monospace; font-size:0.85rem; font-weight:600; cursor:pointer;">
                 Cicil Pokok
               </button>
               <button style="flex:1; background:rgba(59,130,246,0.12); border:1px solid rgba(59,130,246,0.5); color:var(--accent-blue); padding:10px; border-radius:8px; font-family:'Fira Code',monospace; font-size:0.85rem; font-weight:600; cursor:pointer;">
                 Lunasi Tagihan
               </button>
+            </div>
+            <!-- Cicilan Input Box -->
+            <div style="display:none; gap:8px; margin-top:12px;">
+              <input type="text" placeholder="Amount Cicil Pokok" style="flex:1; width:100%; background:rgba(0,0,0,0.4); border:1px solid rgba(255,255,255,0.1); color:#fff; padding:10px 12px; border-radius:6px; font-family:'Fira Code',monospace; font-size:0.8rem; outline:none;">
+              <button style="background:var(--accent-green); color:#000; border:none; padding:10px 16px; border-radius:6px; font-family:'Inter',sans-serif; font-weight:bold; cursor:pointer; font-size:0.85rem;">Simpan</button>
             </div>
           </div>
         </div>
